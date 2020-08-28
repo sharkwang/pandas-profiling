@@ -177,7 +177,7 @@ def get_duplicates_items(duplicates: pd.DataFrame):
     if duplicates is not None and len(duplicates) > 0:
         items.append(
             Duplicate(
-                duplicate=duplicates, name="Most frequent", anchor_id="duplicates",
+                duplicate=duplicates, name="最常出现", anchor_id="duplicates",
             )
         )
     return items
@@ -282,7 +282,7 @@ def get_report_structure(summary: dict) -> Renderable:
     """
     disable_progress_bar = not config["progress_bar"].get(bool)
     with tqdm(
-        total=1, desc="Generate report structure", disable=disable_progress_bar
+        total=1, desc="生成报告结构", disable=disable_progress_bar
     ) as pbar:
         warnings = summary["messages"]
 
@@ -290,13 +290,13 @@ def get_report_structure(summary: dict) -> Renderable:
             Container(
                 get_dataset_items(summary, warnings),
                 sequence_type="tabs",
-                name="Overview",
+                name="总览",
                 anchor_id="overview",
             ),
             Container(
                 render_variables_section(summary),
                 sequence_type="accordion",
-                name="Variables",
+                name="变量",
                 anchor_id="variables",
             ),
         ]
@@ -307,14 +307,21 @@ def get_report_structure(summary: dict) -> Renderable:
                 Container(
                     scatter_items,
                     sequence_type="tabs" if len(scatter_items) <= 10 else "select",
-                    name="Interactions",
+                    name="交互作用",
                     anchor_id="interactions",
                 ),
             )
 
         corr = get_correlation_items(summary)
-        if corr is not None:
-            section_items.append(corr)
+        if len(corr) > 0:
+            section_items.append(
+                Container(
+                    corr,
+                    sequence_type="tabs",
+                    name="相关性",
+                    anchor_id="missing",
+                )
+            )
 
         missing_items = get_missing_items(summary)
         if len(missing_items) > 0:
@@ -322,7 +329,7 @@ def get_report_structure(summary: dict) -> Renderable:
                 Container(
                     missing_items,
                     sequence_type="tabs",
-                    name="Missing values",
+                    name="缺失值",
                     anchor_id="missing",
                 )
             )
@@ -333,7 +340,7 @@ def get_report_structure(summary: dict) -> Renderable:
                 Container(
                     items=sample_items,
                     sequence_type="list",
-                    name="Sample",
+                    name="样本",
                     anchor_id="sample",
                 )
             )
@@ -344,7 +351,7 @@ def get_report_structure(summary: dict) -> Renderable:
                 Container(
                     items=duplicate_items,
                     sequence_type="list",
-                    name="Duplicate rows",
+                    name="重复行",
                     anchor_id="duplicate",
                 )
             )
@@ -353,7 +360,7 @@ def get_report_structure(summary: dict) -> Renderable:
         pbar.update()
 
     footer = HTML(
-        content='Report generated with <a href="https://github.com/pandas-profiling/pandas-profiling">pandas-profiling</a>.'
+        content='报告产生使用<a href="https://github.com/pandas-profiling/pandas-profiling">pandas-profiling</a>.'
     )
 
     return Root("Root", sections, footer)

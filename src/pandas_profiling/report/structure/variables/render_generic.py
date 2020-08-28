@@ -26,7 +26,7 @@ def render_generic(summary):
                 "alert": "n_missing" in summary["warn_fields"],
             },
             {
-                "name": "Missing (%)",
+                "name": "缺失比例(%)",
                 "value": summary["p_missing"],
                 "fmt": "fmt_percent",
                 "alert": "p_missing" in summary["warn_fields"],

@@ -28,25 +28,25 @@ def render_count(summary):
     table1 = Table(
         [
             {
-                "name": "Distinct count",
+                "name": "区别计数",
                 "value": summary["n_unique"],
                 "fmt": "fmt",
                 "alert": False,
             },
             {
-                "name": "Unique (%)",
+                "name": "唯一值 (%)",
                 "value": summary["p_unique"],
                 "fmt": "fmt_percent",
                 "alert": False,
             },
             {
-                "name": "Missing",
+                "name": "缺失",
                 "value": summary["n_missing"],
                 "fmt": "fmt",
                 "alert": False,
             },
             {
-                "name": "Missing (%)",
+                "name": "缺失比例 (%)",
                 "value": summary["p_missing"],
                 "fmt": "fmt_percent",
                 "alert": False,
@@ -57,31 +57,31 @@ def render_count(summary):
     table2 = Table(
         [
             {
-                "name": "Mean",
+                "name": "均数",
                 "value": summary["mean"],
                 "fmt": "fmt_numeric",
                 "alert": False,
             },
             {
-                "name": "Minimum",
+                "name": "最小值",
                 "value": summary["min"],
                 "fmt": "fmt_numeric",
                 "alert": False,
             },
             {
-                "name": "Maximum",
+                "name": "最大值",
                 "value": summary["max"],
                 "fmt": "fmt_numeric",
                 "alert": False,
             },
             {
-                "name": "Zeros",
+                "name": "零值",
                 "value": summary["n_zeros"],
                 "fmt": "fmt",
                 "alert": False,
             },
             {
-                "name": "Zeros (%)",
+                "name": "零值 (%)",
                 "value": summary["p_zeros"],
                 "fmt": "fmt_percent",
                 "alert": False,
@@ -106,16 +106,16 @@ def render_count(summary):
     )
 
     quantile_statistics = {
-        "name": "Quantile statistics",
+        "name": "定性分析",
         "items": [
             {
-                "name": "Minimum",
+                "name": "最小值",
                 "value": summary["min"],
                 "fmt": "fmt_numeric",
                 "alert": False,
             },
             {
-                "name": "5-th percentile",
+                "name": "5-th 百分位",
                 "value": summary["quantile_5"],
                 "fmt": "fmt_numeric",
                 "alert": False,
@@ -127,7 +127,7 @@ def render_count(summary):
                 "alert": False,
             },
             {
-                "name": "median",
+                "name": "中位数",
                 "value": summary["quantile_50"],
                 "fmt": "fmt_numeric",
                 "alert": False,
@@ -139,25 +139,25 @@ def render_count(summary):
                 "alert": False,
             },
             {
-                "name": "95-th percentile",
+                "name": "95-th 百分位",
                 "value": summary["quantile_95"],
                 "fmt": "fmt_numeric",
                 "alert": False,
             },
             {
-                "name": "Maximum",
+                "name": "最大值",
                 "value": summary["max"],
                 "fmt": "fmt_numeric",
                 "alert": False,
             },
             {
-                "name": "Range",
+                "name": "区间",
                 "value": summary["range"],
                 "fmt": "fmt_numeric",
                 "alert": False,
             },
             {
-                "name": "Interquartile range",
+                "name": "四分位距",
                 "value": summary["iqr"],
                 "fmt": "fmt_numeric",
                 "alert": False,
@@ -166,24 +166,24 @@ def render_count(summary):
     }
 
     descriptive_statistics = {
-        "name": "Descriptive statistics",
+        "name": "描述性统计",
         "items": [
             {
-                "name": "Standard deviation",
+                "name": "标准差",
                 "value": summary["std"],
                 "fmt": "fmt_numeric",
             },
             {
-                "name": "Coefficient of variation",
+                "name": "变异系数",
                 "value": summary["cv"],
                 "fmt": "fmt_numeric",
             },
-            {"name": "Kurtosis", "value": summary["kurt"], "fmt": "fmt_numeric"},
-            {"name": "Mean", "value": summary["mean"], "fmt": "fmt_numeric"},
+            {"name": "峰度", "value": summary["kurt"], "fmt": "fmt_numeric"},
+            {"name": "均数", "value": summary["mean"], "fmt": "fmt_numeric"},
             {"name": "MAD", "value": summary["mad"], "fmt": "fmt_numeric"},
-            {"name": "Skewness", "value": summary["skew"], "fmt": "fmt_numeric"},
-            {"name": "Sum", "value": summary["sum"], "fmt": "fmt_numeric"},
-            {"name": "Variance", "value": summary["var"], "fmt": "fmt_numeric"},
+            {"name": "偏度", "value": summary["skew"], "fmt": "fmt_numeric"},
+            {"name": "积", "value": summary["sum"], "fmt": "fmt_numeric"},
+            {"name": "方差", "value": summary["var"], "fmt": "fmt_numeric"},
         ],
     }
 
@@ -232,7 +232,7 @@ def render_count(summary):
             ),
         ],
         sequence_type="tabs",
-        name="Extreme values",
+        name="极值",
         anchor_id="extreme_values",
     )
 
@@ -240,7 +240,7 @@ def render_count(summary):
         [
             # statistics,
             Container(
-                seqs, sequence_type="tabs", name="Histogram(s)", anchor_id="histograms"
+                seqs, sequence_type="tabs", name="直方图", anchor_id="histograms"
             ),
             fq,
             evs,

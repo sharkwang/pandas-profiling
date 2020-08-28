@@ -32,13 +32,13 @@ def render_real(summary):
     table1 = Table(
         [
             {
-                "name": "Distinct count",
+                "name": "区别计数",
                 "value": summary["n_unique"],
                 "fmt": "fmt",
                 "alert": "n_unique" in summary["warn_fields"],
             },
             {
-                "name": "Unique (%)",
+                "name": "唯一值比例 (%)",
                 "value": summary["p_unique"],
                 "fmt": "fmt_percent",
                 "alert": "p_unique" in summary["warn_fields"],
@@ -50,7 +50,7 @@ def render_real(summary):
                 "alert": "n_missing" in summary["warn_fields"],
             },
             {
-                "name": "Missing (%)",
+                "name": "缺失比例(%)",
                 "value": summary["p_missing"],
                 "fmt": "fmt_percent",
                 "alert": "p_missing" in summary["warn_fields"],

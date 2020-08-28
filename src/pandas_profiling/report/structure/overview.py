@@ -9,47 +9,47 @@ def get_dataset_overview(summary):
     dataset_info = Table(
         [
             {
-                "name": "Number of variables",
+                "name": "变量个数",
                 "value": summary["table"]["n_var"],
                 "fmt": "fmt_numeric",
             },
             {
-                "name": "Number of observations",
+                "name": "样本数量",
                 "value": summary["table"]["n"],
                 "fmt": "fmt_numeric",
             },
             {
-                "name": "Missing cells",
+                "name": "缺失元素",
                 "value": summary["table"]["n_cells_missing"],
                 "fmt": "fmt_numeric",
             },
             {
-                "name": "Missing cells (%)",
+                "name": "缺失元素 (%)",
                 "value": summary["table"]["p_cells_missing"],
                 "fmt": "fmt_percent",
             },
             {
-                "name": "Duplicate rows",
+                "name": "重复行",
                 "value": summary["table"]["n_duplicates"],
                 "fmt": "fmt_numeric",
             },
             {
-                "name": "Duplicate rows (%)",
+                "name": "重复行 (%)",
                 "value": summary["table"]["p_duplicates"],
                 "fmt": "fmt_percent",
             },
             {
-                "name": "Total size in memory",
+                "name": "总内存值",
                 "value": summary["table"]["memory_size"],
                 "fmt": "fmt_bytesize",
             },
             {
-                "name": "Average record size in memory",
+                "name": "记录平均内存值",
                 "value": summary["table"]["record_size"],
                 "fmt": "fmt_bytesize",
             },
         ],
-        name="Dataset statistics",
+        name="数据集统计",
     )
 
     dataset_types = Table(
@@ -57,13 +57,13 @@ def get_dataset_overview(summary):
             {"name": type_name, "value": count, "fmt": "fmt_numeric"}
             for type_name, count in summary["table"]["types"].items()
         ],
-        name="Variable types",
+        name="变量类型",
     )
 
     return Container(
         [dataset_info, dataset_types],
         anchor_id="dataset_overview",
-        name="Overview",
+        name="数据集总览",
         sequence_type="grid",
     )
 
@@ -81,7 +81,7 @@ def get_dataset_schema(metadata) -> Optional[Table]:
             if "copyright_year" not in metadata:
                 about_dataset.append(
                     {
-                        "name": "Copyright",
+                        "name": "版权所有",
                         "value": f"(c) {metadata['copyright_holder']}",
                         "fmt": "fmt",
                     }
@@ -89,7 +89,7 @@ def get_dataset_schema(metadata) -> Optional[Table]:
             else:
                 about_dataset.append(
                     {
-                        "name": "Copyright",
+                        "name": "版权所有",
                         "value": f"(c) {metadata['copyright_holder']} {metadata['copyright_year']}",
                         "fmt": "fmt",
                     }
@@ -109,21 +109,21 @@ def get_dataset_reproduction(summary: dict, metadata: dict):
 
     reproduction_table = Table(
         [
-            {"name": "Analysis started", "value": date_start, "fmt": "fmt"},
-            {"name": "Analysis finished", "value": date_end, "fmt": "fmt"},
-            {"name": "Duration", "value": duration, "fmt": "fmt_timespan"},
+            {"name": "分析开始于", "value": date_start, "fmt": "fmt"},
+            {"name": "分析结束于", "value": date_end, "fmt": "fmt"},
+            {"name": "时长", "value": duration, "fmt": "fmt_timespan"},
             {
-                "name": "Software version",
+                "name": "软件版本",
                 "value": f'<a href="https://github.com/pandas-profiling/pandas-profiling">pandas-profiling v{version}</a>',
                 "fmt": "raw",
             },
             {
-                "name": "Download configuration",
+                "name": "下载配置",
                 "value": f'<a download="config.yaml" href="data:text/plain;charset=utf-8,{config}">config.yaml</a>',
                 "fmt": "raw",
             },
         ],
-        name="Reproduction",
+        name="元数据生成",
         anchor_id="metadata_reproduction",
     )
 
@@ -135,7 +135,7 @@ def get_dataset_reproduction(summary: dict, metadata: dict):
     items.append(reproduction_table)
 
     return Container(
-        items, name="Metadata", anchor_id="metadata", sequence_type="grid",
+        items, name="元数据", anchor_id="metadata", sequence_type="grid",
     )
 
 
@@ -147,4 +147,4 @@ def get_dataset_warnings(warnings: list) -> Warnings:
             if warning.message_type != MessageType.REJECTED
         ]
     )
-    return Warnings(warnings=warnings, name=f"Warnings ({count})", anchor_id="warnings")
+    return Warnings(warnings=warnings, name=f"告警 ({count})", anchor_id="warnings")

@@ -237,7 +237,7 @@ def render_categorical(summary):
     info = VariableInfo(
         summary["varid"],
         summary["varname"],
-        "Categorical",
+        "分类变量",
         summary["warnings"],
         summary["description"],
     )
@@ -245,13 +245,13 @@ def render_categorical(summary):
     table = Table(
         [
             {
-                "name": "Distinct count",
+                "name": "区别计数",
                 "value": summary["n_unique"],
                 "fmt": "fmt",
                 "alert": "n_unique" in summary["warn_fields"],
             },
             {
-                "name": "Unique (%)",
+                "name": "唯一值比例 (%)",
                 "value": summary["p_unique"],
                 "fmt": "fmt_percent",
                 "alert": "p_unique" in summary["warn_fields"],
@@ -263,7 +263,7 @@ def render_categorical(summary):
                 "alert": "n_missing" in summary["warn_fields"],
             },
             {
-                "name": "Missing (%)",
+                "name": "缺失比例(%)",
                 "value": summary["p_missing"],
                 "fmt": "fmt_percent",
                 "alert": "p_missing" in summary["warn_fields"],

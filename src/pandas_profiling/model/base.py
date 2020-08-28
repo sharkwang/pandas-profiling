@@ -14,33 +14,33 @@ from pandas_profiling.config import config
 class Variable(Enum):
     """The possible types of variables in the Profiling Report."""
 
-    TYPE_CAT = "CAT"
+    TYPE_CAT = "分类变量"
     """A categorical variable"""
 
-    TYPE_BOOL = "BOOL"
+    TYPE_BOOL = "布尔变量"
     """A boolean variable"""
 
-    TYPE_NUM = "NUM"
+    TYPE_NUM = "数字变量"
     """A numeric variable"""
 
-    TYPE_DATE = "DATE"
+    TYPE_DATE = "日期变量"
     """A date variable"""
 
-    TYPE_URL = "URL"
+    TYPE_URL = "超链接"
     """A URL variable"""
 
-    TYPE_COMPLEX = "COMPLEX"
+    TYPE_COMPLEX = "复杂变量"
 
-    TYPE_PATH = "PATH"
+    TYPE_PATH = "路径"
     """Absolute path"""
 
-    TYPE_FILE = "FILE"
+    TYPE_FILE = "文件"
     """File (i.e. existing path)"""
 
-    TYPE_IMAGE = "IMAGE"
+    TYPE_IMAGE = "图像"
     """Images"""
 
-    S_TYPE_UNSUPPORTED = "UNSUPPORTED"
+    S_TYPE_UNSUPPORTED = "不支持的变量"
     """An unsupported variable"""
 
 

@@ -88,25 +88,25 @@ def render_url(summary):
     table = Table(
         [
             {
-                "name": "Distinct count",
+                "name": "区别计数",
                 "value": summary["n_unique"],
                 "fmt": "fmt",
                 "alert": False,
             },
             {
-                "name": "Unique (%)",
+                "name": "唯一值比例 (%)",
                 "value": summary["p_unique"],
                 "fmt": "fmt_percent",
                 "alert": False,
             },
             {
-                "name": "Missing",
+                "name": "缺失",
                 "value": summary["n_missing"],
                 "fmt": "fmt",
                 "alert": False,
             },
             {
-                "name": "Missing (%)",
+                "name": "缺失比例 (%)",
                 "value": summary["p_missing"],
                 "fmt": "fmt_percent",
                 "alert": False,

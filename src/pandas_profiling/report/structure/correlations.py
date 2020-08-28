@@ -94,7 +94,7 @@ def get_correlation_items(summary) -> Optional[Renderable]:
     corr = Container(
         items,
         sequence_type="tabs",
-        name="Correlations Tab",
+        name="相关性列表",
         anchor_id="correlations_tab",
     )
 
