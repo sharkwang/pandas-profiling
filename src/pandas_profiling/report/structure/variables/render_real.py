@@ -44,7 +44,7 @@ def render_real(summary):
                 "alert": "p_unique" in summary["warn_fields"],
             },
             {
-                "name": "Missing",
+                "name": "缺失",
                 "value": summary["n_missing"],
                 "fmt": "fmt",
                 "alert": "n_missing" in summary["warn_fields"],
@@ -56,13 +56,13 @@ def render_real(summary):
                 "alert": "p_missing" in summary["warn_fields"],
             },
             {
-                "name": "Infinite",
+                "name": "无穷",
                 "value": summary["n_infinite"],
                 "fmt": "fmt",
                 "alert": "n_infinite" in summary["warn_fields"],
             },
             {
-                "name": "Infinite (%)",
+                "name": "无穷比例 (%)",
                 "value": summary["p_infinite"],
                 "fmt": "fmt_percent",
                 "alert": "p_infinite" in summary["warn_fields"],

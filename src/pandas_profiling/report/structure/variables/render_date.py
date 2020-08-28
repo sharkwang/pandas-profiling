@@ -39,7 +39,7 @@ def render_date(summary):
                 "alert": False,
             },
             {
-                "name": "Missing",
+                "name": "缺失",
                 "value": summary["n_missing"],
                 "fmt": "fmt",
                 "alert": False,

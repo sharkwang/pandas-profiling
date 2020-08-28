@@ -27,7 +27,7 @@ def render_complex(summary):
         [
             {"name": "区别计数", "value": summary["n_unique"], "fmt": "fmt"},
             {"name": "唯一值比例 (%)", "value": summary["p_unique"], "fmt": "fmt_percent"},
-            {"name": "Missing", "value": summary["n_missing"], "fmt": "fmt"},
+            {"name": "缺失", "value": summary["n_missing"], "fmt": "fmt"},
             {
                 "name": "缺失比例(%)",
                 "value": summary["p_missing"],

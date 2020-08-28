@@ -44,7 +44,7 @@ def render_boolean(summary):
                 "alert": "p_unique" in summary["warn_fields"],
             },
             {
-                "name": "Missing",
+                "name": "缺失",
                 "value": summary["n_missing"],
                 "fmt": "fmt",
                 "alert": "n_missing" in summary["warn_fields"],
