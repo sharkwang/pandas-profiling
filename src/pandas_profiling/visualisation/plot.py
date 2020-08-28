@@ -157,7 +157,9 @@ def correlation_matrix(data: pd.DataFrame, vmin: int = -1) -> str:
     cmap = plt.get_cmap(cmap_name)
     if vmin == 0:
         cmap = get_cmap_half(cmap)
-    cmap.set_bad(cmap_bad)
+    
+    #cmap = copy.copy(mpl.cm.get_cmap("RdBu"))
+    #cmap.set_bad(cmap_bad)
 
     labels = data.columns
     matrix_image = axes_cor.imshow(

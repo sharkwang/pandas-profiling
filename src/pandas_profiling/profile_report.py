@@ -265,7 +265,7 @@ class ProfileReport(SerializeReport, object):
 
         disable_progress_bar = not config["progress_bar"].get(bool)
         with tqdm(
-            total=1, desc="Export report to file", disable=disable_progress_bar
+            total=1, desc="输出报告到文件", disable=disable_progress_bar
         ) as pbar:
             output_file.write_text(data, encoding="utf-8")
             pbar.update()
@@ -286,7 +286,7 @@ class ProfileReport(SerializeReport, object):
         report = self.report
 
         disable_progress_bar = not config["progress_bar"].get(bool)
-        with tqdm(total=1, desc="Render HTML", disable=disable_progress_bar) as pbar:
+        with tqdm(total=1, desc="生成HTML文件", disable=disable_progress_bar) as pbar:
             html = HTMLReport(report).render(
                 nav=config["html"]["navbar_show"].get(bool),
                 offline=config["html"]["use_local_assets"].get(bool),

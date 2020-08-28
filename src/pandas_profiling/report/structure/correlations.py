@@ -24,14 +24,13 @@ def get_correlation_items(summary) -> Optional[Renderable]:
     items: List[Renderable] = []
 
     pearson_description = (
-        "The Pearson's correlation coefficient (<em>r</em>) is a measure of linear correlation "
-        "between two variables. It's value lies between -1 and +1, -1 indicating total negative "
-        "linear correlation, 0 indicating no linear correlation and 1 indicating total positive "
-        "linear correlation. Furthermore, <em>r</em> is invariant under separate changes in location "
-        "and scale of the two variables, implying that for a linear function the angle to the "
-        "x-axis does not affect <em>r</em>.<br /><br />To calculate <em>r</em> for two "
-        "variables <em>X</em> and <em>Y</em>, one divides the covariance of <em>X</em> and "
-        "<em>Y</em> by the product of their standard deviations. "
+        "皮尔逊相关系数 ( <em>r</em> ) 是衡量两个变量之间线性相关关系的指标， "
+        "它的值在-1和+1之间，-1表示完全负线性相关，0表示没有线性"
+        "相关，1表示完全正线性相关。它的值在-1和+1之间，-1表示完 "
+        "全负线性相关，0表示没有线性相关，1表示完全正线性相关。 "
+        "此外，在两个变量的位置和比例分别变化的情况下<em>r</em>"
+        "是不变的，这意味着对于一个线性函数来说，与x轴的角度不会影响 <em>r</em>.<br /><br />要计算两个变量X和Y的 <em>r</em>"
+        " 就要用X和Y的协方差除以它们的标准差的乘积。"
     )
     spearman_description = """The Spearman's rank correlation coefficient (<em>ρ</em>) is a measure of monotonic 
     correlation between two variables, and is therefore better in catching nonlinear monotonic correlations than 
@@ -100,13 +99,13 @@ def get_correlation_items(summary) -> Optional[Renderable]:
 
     if len(items) > 0:
         btn = ToggleButton(
-            "Toggle correlation descriptions",
+            "切换相关性描述",
             anchor_id="toggle-correlation-description",
             name="Toggle correlation descriptions",
         )
 
         return Collapse(
-            name="Correlations", anchor_id="correlations", button=btn, item=corr
+            name="相关性", anchor_id="correlations", button=btn, item=corr
         )
     else:
         return None

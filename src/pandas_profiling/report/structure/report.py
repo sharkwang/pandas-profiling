@@ -148,7 +148,7 @@ def render_variables_section(dataframe_summary: dict) -> list:
 
         bottom = None
         if "bottom" in template_variables and template_variables["bottom"] is not None:
-            btn = ToggleButton("Toggle details", anchor_id=template_variables["varid"])
+            btn = ToggleButton("详情", anchor_id=template_variables["varid"])
             bottom = Collapse(btn, template_variables["bottom"])
 
         var = Variable(
@@ -313,15 +313,8 @@ def get_report_structure(summary: dict) -> Renderable:
             )
 
         corr = get_correlation_items(summary)
-        if len(corr) > 0:
-            section_items.append(
-                Container(
-                    corr,
-                    sequence_type="tabs",
-                    name="相关性",
-                    anchor_id="missing",
-                )
-            )
+        if corr is not None:
+            section_items.append(corr)
 
         missing_items = get_missing_items(summary)
         if len(missing_items) > 0:

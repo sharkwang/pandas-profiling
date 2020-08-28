@@ -27,7 +27,7 @@ def render_date(summary):
     table1 = Table(
         [
             {
-                "name": "区别计数",
+                "name": "唯一值计数",
                 "value": summary["n_unique"],
                 "fmt": "fmt",
                 "alert": False,
@@ -39,19 +39,19 @@ def render_date(summary):
                 "alert": False,
             },
             {
-                "name": "缺失",
+                "name": "缺失值",
                 "value": summary["n_missing"],
                 "fmt": "fmt",
                 "alert": False,
             },
             {
-                "name": "缺失比例(%)",
+                "name": "缺失值比例(%)",
                 "value": summary["p_missing"],
                 "fmt": "fmt_percent",
                 "alert": False,
             },
             {
-                "name": "Memory size",
+                "name": "内存占用",
                 "value": summary["memory_size"],
                 "fmt": "fmt_bytesize",
                 "alert": False,
@@ -61,8 +61,8 @@ def render_date(summary):
 
     table2 = Table(
         [
-            {"name": "Minimum", "value": summary["min"], "fmt": "fmt", "alert": False},
-            {"name": "Maximum", "value": summary["max"], "fmt": "fmt", "alert": False},
+            {"name": "最小", "value": summary["min"], "fmt": "fmt", "alert": False},
+            {"name": "最大", "value": summary["max"], "fmt": "fmt", "alert": False},
         ]
     )
 

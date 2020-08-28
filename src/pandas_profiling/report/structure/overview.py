@@ -19,12 +19,12 @@ def get_dataset_overview(summary):
                 "fmt": "fmt_numeric",
             },
             {
-                "name": "缺失元素",
+                "name": "缺失字段",
                 "value": summary["table"]["n_cells_missing"],
                 "fmt": "fmt_numeric",
             },
             {
-                "name": "缺失元素 (%)",
+                "name": "缺失字段比例 (%)",
                 "value": summary["table"]["p_cells_missing"],
                 "fmt": "fmt_percent",
             },

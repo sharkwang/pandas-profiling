@@ -25,16 +25,16 @@ def render_complex(summary):
 
     table1 = Table(
         [
-            {"name": "区别计数", "value": summary["n_unique"], "fmt": "fmt"},
+            {"name": "唯一值计数", "value": summary["n_unique"], "fmt": "fmt"},
             {"name": "唯一值比例 (%)", "value": summary["p_unique"], "fmt": "fmt_percent"},
-            {"name": "缺失", "value": summary["n_missing"], "fmt": "fmt"},
+            {"name": "缺失值", "value": summary["n_missing"], "fmt": "fmt"},
             {
-                "name": "缺失比例(%)",
+                "name": "缺失值比例(%)",
                 "value": summary["p_missing"],
                 "fmt": "fmt_percent",
             },
             {
-                "name": "Memory size",
+                "name": "内存占用",
                 "value": summary["memory_size"],
                 "fmt": "fmt_bytesize",
             },
@@ -43,11 +43,11 @@ def render_complex(summary):
 
     table2 = Table(
         [
-            {"name": "Mean", "value": summary["mean"], "fmt": "fmt_numeric"},
-            {"name": "Minimum", "value": summary["min"], "fmt": "fmt_numeric"},
-            {"name": "Maximum", "value": summary["max"], "fmt": "fmt_numeric"},
-            {"name": "Zeros", "value": summary["n_zeros"], "fmt": "fmt_numeric"},
-            {"name": "Zeros (%)", "value": summary["p_zeros"], "fmt": "fmt_percent"},
+            {"name": "均数", "value": summary["mean"], "fmt": "fmt_numeric"},
+            {"name": "最小值", "value": summary["min"], "fmt": "fmt_numeric"},
+            {"name": "最大值", "value": summary["max"], "fmt": "fmt_numeric"},
+            {"name": "零值", "value": summary["n_zeros"], "fmt": "fmt_numeric"},
+            {"name": "零值比例 (%)", "value": summary["p_zeros"], "fmt": "fmt_percent"},
         ]
     )
 

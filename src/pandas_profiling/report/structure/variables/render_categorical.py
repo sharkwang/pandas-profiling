@@ -16,31 +16,31 @@ def render_categorical_length(summary, varid, image_format):
     length_table = Table(
         [
             {
-                "name": "Max length",
+                "name": "最大长度",
                 "value": summary["max_length"],
                 "fmt": "fmt_numeric",
                 "alert": False,
             },
             {
-                "name": "Median length",
+                "name": "中位长度",
                 "value": summary["median_length"],
                 "fmt": "fmt_numeric",
                 "alert": False,
             },
             {
-                "name": "Mean length",
+                "name": "平均长度",
                 "value": summary["mean_length"],
                 "fmt": "fmt_numeric",
                 "alert": False,
             },
             {
-                "name": "Min length",
+                "name": "最小长度",
                 "value": summary["min_length"],
                 "fmt": "fmt_numeric",
                 "alert": False,
             },
         ],
-        name="Length",
+        name="长度",
         anchor_id=f"{varid}lengthstats",
     )
 
@@ -55,7 +55,7 @@ def render_categorical_length(summary, varid, image_format):
     length_tab = Container(
         [length, length_table],
         anchor_id=f"{varid}tbl",
-        name="Length",
+        name="长度",
         sequence_type="grid",
     )
     return length_tab
@@ -71,7 +71,7 @@ def render_categorical_unicode(summary, varid, redact):
                 n=summary["category_alias_counts"].sum(),
                 max_number_to_print=n_freq_table_max,
             ),
-            name="Most occurring categories",
+            name="最常见分类",
             anchor_id=f"{varid}category_long_values",
             redact=False,
         )
@@ -87,7 +87,7 @@ def render_categorical_unicode(summary, varid, redact):
                     n=category_alias_counts.sum(),
                     max_number_to_print=n_freq_table_max,
                 ),
-                name=f"Most frequent {category_alias_name} characters",
+                name=f"最常见字符 {category_alias_name} ",
                 anchor_id=f"{varid}category_alias_values_{category_alias_name}",
                 redact=redact,
             )
@@ -100,7 +100,7 @@ def render_categorical_unicode(summary, varid, redact):
                 n=summary["script_counts"].sum(),
                 max_number_to_print=n_freq_table_max,
             ),
-            name="Most occurring scripts",
+            name="最常见值",
             anchor_id=f"{varid}script_values",
             redact=False,
         ),
@@ -113,7 +113,7 @@ def render_categorical_unicode(summary, varid, redact):
                     n=script_counts.sum(),
                     max_number_to_print=n_freq_table_max,
                 ),
-                name=f"Most frequent {script_name} characters",
+                name=f"最常见 {script_name} 字符",
                 anchor_id=f"{varid}script_values_{script_name}",
                 redact=redact,
             )
@@ -126,7 +126,7 @@ def render_categorical_unicode(summary, varid, redact):
                 n=summary["block_alias_counts"].sum(),
                 max_number_to_print=n_freq_table_max,
             ),
-            name="Most occurring blocks",
+            name="最常见区段",
             anchor_id=f"{varid}block_alias_values",
             redact=False,
         )
@@ -139,7 +139,7 @@ def render_categorical_unicode(summary, varid, redact):
                     n=block_counts.sum(),
                     max_number_to_print=n_freq_table_max,
                 ),
-                name=f"Most frequent {block_name} characters",
+                name=f"最频繁 {block_name} 字符",
                 anchor_id=f"{varid}block_alias_values_{block_name}",
                 redact=redact,
             )
@@ -151,36 +151,36 @@ def render_categorical_unicode(summary, varid, redact):
                 Table(
                     [
                         {
-                            "name": "Unique unicode characters",
+                            "name": "字符",
                             "value": summary["n_characters"],
                             "fmt": "fmt_numeric",
                             "alert": False,
                         },
                         {
-                            "name": 'Unique unicode categories (<a target="_blank" href="https://en.wikipedia.org/wiki/Unicode_character_property#General_Category">?</a>)',
+                            "name": '类别 (<a target="_blank" href="https://en.wikipedia.org/wiki/Unicode_character_property#General_Category">?</a>)',
                             "value": summary["n_category"],
                             "fmt": "fmt_numeric",
                             "alert": False,
                         },
                         {
-                            "name": 'Unique unicode scripts (<a target="_blank" href="https://en.wikipedia.org/wiki/Script_(Unicode)#List_of_scripts_in_Unicode">?</a>)',
+                            "name": '书写系统 (<a target="_blank" href="https://en.wikipedia.org/wiki/Script_(Unicode)#List_of_scripts_in_Unicode">?</a>)',
                             "value": summary["n_scripts"],
                             "fmt": "fmt_numeric",
                             "alert": False,
                         },
                         {
-                            "name": 'Unique unicode blocks (<a target="_blank" href="https://en.wikipedia.org/wiki/Unicode_block">?</a>)',
+                            "name": '区段 (<a target="_blank" href="https://en.wikipedia.org/wiki/Unicode_block">?</a>)',
                             "value": summary["n_block_alias"],
                             "fmt": "fmt_numeric",
                             "alert": False,
                         },
                     ],
-                    name="Overview of Unicode Properties",
-                    caption="The Unicode Standard assigns character properties to each code point, which can be used to analyse textual variables. ",
+                    name="Unicode属性概述",
+                    caption="Unicode标准为每个字符提供了唯一的数字编号(code point)，可以用来分析文本变量。",
                 ),
             ],
             anchor_id=f"{varid}character_overview",
-            name="Overview",
+            name="概要",
             sequence_type="list",
         ),
         Container(
@@ -191,30 +191,30 @@ def render_categorical_unicode(summary, varid, redact):
                         n=summary["character_counts"].sum(),
                         max_number_to_print=n_freq_table_max,
                     ),
-                    name="Most occurring characters",
+                    name="最常出现的字符",
                     anchor_id=f"{varid}character_frequency",
                     redact=redact,
                 ),
             ],
-            name="Characters",
+            name="字符",
             anchor_id=f"{varid}characters",
             sequence_type="named_list",
         ),
         Container(
             category_items,
-            name="Categories",
+            name="分类",
             anchor_id=f"{varid}categories",
             sequence_type="named_list",
         ),
         Container(
             script_items,
-            name="Scripts",
+            name="书写系统",
             anchor_id=f"{varid}scripts",
             sequence_type="named_list",
         ),
         Container(
             block_items,
-            name="Blocks",
+            name="区段",
             anchor_id=f"{varid}blocks",
             sequence_type="named_list",
         ),
@@ -245,7 +245,7 @@ def render_categorical(summary):
     table = Table(
         [
             {
-                "name": "区别计数",
+                "name": "唯一值计数",
                 "value": summary["n_unique"],
                 "fmt": "fmt",
                 "alert": "n_unique" in summary["warn_fields"],
@@ -257,19 +257,19 @@ def render_categorical(summary):
                 "alert": "p_unique" in summary["warn_fields"],
             },
             {
-                "name": "缺失",
+                "name": "缺失值",
                 "value": summary["n_missing"],
                 "fmt": "fmt",
                 "alert": "n_missing" in summary["warn_fields"],
             },
             {
-                "name": "缺失比例(%)",
+                "name": "缺失值比例(%)",
                 "value": summary["p_missing"],
                 "fmt": "fmt_percent",
                 "alert": "p_missing" in summary["warn_fields"],
             },
             {
-                "name": "Memory size",
+                "name": "内存占用",
                 "value": summary["memory_size"],
                 "fmt": "fmt_bytesize",
                 "alert": False,
@@ -292,7 +292,7 @@ def render_categorical(summary):
     items = [
         FrequencyTable(
             template_variables["freq_table_rows"],
-            name="Common Values",
+            name="常见值",
             anchor_id=f"{varid}common_values",
             redact=redact,
         )
@@ -305,7 +305,7 @@ def render_categorical(summary):
                 pie_plot(summary["value_counts"], legend_kws={"loc": "upper right"}),
                 image_format=image_format,
                 alt="Chart",
-                name="Chart",
+                name="图表",
                 anchor_id=f"{varid}pie_chart",
             )
         )

@@ -20,19 +20,19 @@ def render_generic(summary):
     table = Table(
         [
             {
-                "name": "缺失",
+                "name": "缺失值",
                 "value": summary["n_missing"],
                 "fmt": "fmt",
                 "alert": "n_missing" in summary["warn_fields"],
             },
             {
-                "name": "缺失比例(%)",
+                "name": "缺失值比例(%)",
                 "value": summary["p_missing"],
                 "fmt": "fmt_percent",
                 "alert": "p_missing" in summary["warn_fields"],
             },
             {
-                "name": "Memory size",
+                "name": "内存占用",
                 "value": summary["memory_size"],
                 "fmt": "fmt_bytesize",
                 "alert": False,

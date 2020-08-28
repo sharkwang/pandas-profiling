@@ -32,7 +32,7 @@ def render_boolean(summary):
     table = Table(
         [
             {
-                "name": "区别计数",
+                "name": "唯一值计数",
                 "value": summary["n_unique"],
                 "fmt": "fmt",
                 "alert": "n_unique" in summary["warn_fields"],
@@ -44,19 +44,19 @@ def render_boolean(summary):
                 "alert": "p_unique" in summary["warn_fields"],
             },
             {
-                "name": "缺失",
+                "name": "缺失值",
                 "value": summary["n_missing"],
                 "fmt": "fmt",
                 "alert": "n_missing" in summary["warn_fields"],
             },
             {
-                "name": "缺失比例(%)",
+                "name": "缺失值比例(%)",
                 "value": summary["p_missing"],
                 "fmt": "fmt_percent",
                 "alert": "p_missing" in summary["warn_fields"],
             },
             {
-                "name": "Memory size",
+                "name": "内存占用",
                 "value": summary["memory_size"],
                 "fmt": "fmt_bytesize",
                 "alert": False,
@@ -78,7 +78,7 @@ def render_boolean(summary):
     items = [
         FrequencyTable(
             template_variables["freq_table_rows"],
-            name="Common Values",
+            name="共同值",
             anchor_id=f"{varid}frequency_table",
             redact=False,
         )
@@ -91,7 +91,7 @@ def render_boolean(summary):
                 pie_plot(summary["value_counts"], legend_kws={"loc": "upper right"}),
                 image_format=image_format,
                 alt="Chart",
-                name="Chart",
+                name="图表",
                 anchor_id=f"{varid}pie_chart",
             )
         )

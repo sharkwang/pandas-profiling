@@ -32,7 +32,7 @@ def render_real(summary):
     table1 = Table(
         [
             {
-                "name": "区别计数",
+                "name": "唯一值计数",
                 "value": summary["n_unique"],
                 "fmt": "fmt",
                 "alert": "n_unique" in summary["warn_fields"],
@@ -44,25 +44,25 @@ def render_real(summary):
                 "alert": "p_unique" in summary["warn_fields"],
             },
             {
-                "name": "缺失",
+                "name": "缺失值",
                 "value": summary["n_missing"],
                 "fmt": "fmt",
                 "alert": "n_missing" in summary["warn_fields"],
             },
             {
-                "name": "缺失比例(%)",
+                "name": "缺失值比例(%)",
                 "value": summary["p_missing"],
                 "fmt": "fmt_percent",
                 "alert": "p_missing" in summary["warn_fields"],
             },
             {
-                "name": "无穷",
+                "name": "无穷值",
                 "value": summary["n_infinite"],
                 "fmt": "fmt",
                 "alert": "n_infinite" in summary["warn_fields"],
             },
             {
-                "name": "无穷比例 (%)",
+                "name": "无穷值比例 (%)",
                 "value": summary["p_infinite"],
                 "fmt": "fmt_percent",
                 "alert": "p_infinite" in summary["warn_fields"],
@@ -73,37 +73,37 @@ def render_real(summary):
     table2 = Table(
         [
             {
-                "name": "Mean",
+                "name": "均数",
                 "value": summary["mean"],
                 "fmt": "fmt_numeric",
                 "alert": False,
             },
             {
-                "name": "Minimum",
+                "name": "最小值",
                 "value": summary["min"],
                 "fmt": "fmt_numeric",
                 "alert": False,
             },
             {
-                "name": "Maximum",
+                "name": "最大值",
                 "value": summary["max"],
                 "fmt": "fmt_numeric",
                 "alert": False,
             },
             {
-                "name": "Zeros",
+                "name": "零值",
                 "value": summary["n_zeros"],
                 "fmt": "fmt",
                 "alert": "n_zeros" in summary["warn_fields"],
             },
             {
-                "name": "Zeros (%)",
+                "name": "零值比例 (%)",
                 "value": summary["p_zeros"],
                 "fmt": "fmt_percent",
                 "alert": "p_zeros" in summary["warn_fields"],
             },
             {
-                "name": "Memory size",
+                "name": "内存占用",
                 "value": summary["memory_size"],
                 "fmt": "fmt_bytesize",
                 "alert": False,
@@ -123,70 +123,70 @@ def render_real(summary):
 
     quantile_statistics = Table(
         [
-            {"name": "Minimum", "value": summary["min"], "fmt": "fmt_numeric"},
-            {"name": "5-th percentile", "value": summary["5%"], "fmt": "fmt_numeric"},
-            {"name": "Q1", "value": summary["25%"], "fmt": "fmt_numeric"},
-            {"name": "median", "value": summary["50%"], "fmt": "fmt_numeric"},
-            {"name": "Q3", "value": summary["75%"], "fmt": "fmt_numeric"},
-            {"name": "95-th percentile", "value": summary["95%"], "fmt": "fmt_numeric"},
-            {"name": "Maximum", "value": summary["max"], "fmt": "fmt_numeric"},
-            {"name": "Range", "value": summary["range"], "fmt": "fmt_numeric"},
+            {"name": "最小值", "value": summary["min"], "fmt": "fmt_numeric"},
+            {"name": "5百分位", "value": summary["5%"], "fmt": "fmt_numeric"},
+            {"name": "25百分位", "value": summary["25%"], "fmt": "fmt_numeric"},
+            {"name": "中位", "value": summary["50%"], "fmt": "fmt_numeric"},
+            {"name": "75百分位", "value": summary["75%"], "fmt": "fmt_numeric"},
+            {"name": "95-百分位", "value": summary["95%"], "fmt": "fmt_numeric"},
+            {"name": "最大值", "value": summary["max"], "fmt": "fmt_numeric"},
+            {"name": "极差", "value": summary["range"], "fmt": "fmt_numeric"},
             {
-                "name": "Interquartile range (IQR)",
+                "name": "四分位距 (IQR)",
                 "value": summary["iqr"],
                 "fmt": "fmt_numeric",
             },
         ],
-        name="Quantile statistics",
+        name="定性统计",
     )
 
     if summary["monotonic_increase_strict"]:
-        monotocity = "Strictly increasing"
+        monotocity = "严格递增"
     elif summary["monotonic_decrease_strict"]:
-        monotocity = "Strictly decreasing"
+        monotocity = "严格递减"
     elif summary["monotonic_increase"]:
-        monotocity = "Increasing"
+        monotocity = "递增"
     elif summary["monotonic_decrease"]:
-        monotocity = "Decreasing"
+        monotocity = "递减"
     else:
-        monotocity = "Not monotonic"
+        monotocity = "非单调"
 
     descriptive_statistics = Table(
         [
             {
-                "name": "Standard deviation",
+                "name": "标准差",
                 "value": summary["std"],
                 "fmt": "fmt_numeric",
             },
             {
-                "name": "Coefficient of variation (CV)",
+                "name": "变异系数 (CV)",
                 "value": summary["cv"],
                 "fmt": "fmt_numeric",
             },
-            {"name": "Kurtosis", "value": summary["kurtosis"], "fmt": "fmt_numeric"},
-            {"name": "Mean", "value": summary["mean"], "fmt": "fmt_numeric"},
+            {"name": "峰度", "value": summary["kurtosis"], "fmt": "fmt_numeric"},
+            {"name": "均数", "value": summary["mean"], "fmt": "fmt_numeric"},
             {
-                "name": "Median Absolute Deviation (MAD)",
+                "name": "中位绝对偏差 (MAD)",
                 "value": summary["mad"],
                 "fmt": "fmt_numeric",
             },
             {
-                "name": "Skewness",
+                "name": "偏度",
                 "value": summary["skewness"],
                 "fmt": "fmt_numeric",
                 "class": "alert" if "skewness" in summary["warn_fields"] else "",
             },
-            {"name": "Sum", "value": summary["sum"], "fmt": "fmt_numeric"},
-            {"name": "Variance", "value": summary["variance"], "fmt": "fmt_numeric"},
-            {"name": "Monotocity", "value": monotocity, "fmt": "fmt"},
+            {"name": "总和", "value": summary["sum"], "fmt": "fmt_numeric"},
+            {"name": "方差", "value": summary["variance"], "fmt": "fmt_numeric"},
+            {"name": "单调性", "value": monotocity, "fmt": "fmt"},
         ],
-        name="Descriptive statistics",
+        name="描述性统计",
     )
 
     statistics = Container(
         [quantile_statistics, descriptive_statistics],
         anchor_id=f"{varid}statistics",
-        name="Statistics",
+        name="统计",
         sequence_type="grid",
     )
 
@@ -194,14 +194,14 @@ def render_real(summary):
         histogram(*summary["histogram"]),
         image_format=image_format,
         alt="Histogram",
-        caption=f"<strong>Histogram with fixed size bins</strong> (bins={len(summary['histogram'][1]) - 1})",
-        name="Histogram",
+        caption=f"<strong>固定大小的直方图</strong> (bins={len(summary['histogram'][1]) - 1})",
+        name="直方图",
         anchor_id=f"{varid}histogram",
     )
 
     fq = FrequencyTable(
         template_variables["freq_table_rows"],
-        name="Common values",
+        name="常见值",
         anchor_id=f"{varid}common_values",
         redact=False,
     )
@@ -210,19 +210,19 @@ def render_real(summary):
         [
             FrequencyTable(
                 template_variables["firstn_expanded"],
-                name="Minimum 5 values",
+                name="最小10个",
                 anchor_id=f"{varid}firstn",
                 redact=False,
             ),
             FrequencyTable(
                 template_variables["lastn_expanded"],
-                name="Maximum 5 values",
+                name="最大10个",
                 anchor_id=f"{varid}lastn",
                 redact=False,
             ),
         ],
         sequence_type="tabs",
-        name="Extreme values",
+        name="极值",
         anchor_id=f"{varid}extreme_values",
     )
 

@@ -61,11 +61,11 @@ def describe(title: str, df: pd.DataFrame, sample: Optional[dict] = None) -> dic
     number_of_tasks = 9 + len(df.columns) + len(correlation_names)
 
     with tqdm(
-        total=number_of_tasks, desc="Summarize dataset", disable=disable_progress_bar
+        total=number_of_tasks, desc="归纳数据集", disable=disable_progress_bar
     ) as pbar:
         series_description = get_series_descriptions(df, pbar)
 
-        pbar.set_postfix_str("Get variable types")
+        pbar.set_postfix_str("获取变量类型")
         variables = {
             column: description["type"]
             for column, description in series_description.items()
@@ -80,7 +80,7 @@ def describe(title: str, df: pd.DataFrame, sample: Optional[dict] = None) -> dic
         # Get correlations
         correlations = {}
         for correlation_name in correlation_names:
-            pbar.set_postfix_str(f"Calculate {correlation_name} correlation")
+            pbar.set_postfix_str(f"计算 {correlation_name} 相关性")
             correlations[correlation_name] = calculate_correlation(
                 df, variables, correlation_name
             )
